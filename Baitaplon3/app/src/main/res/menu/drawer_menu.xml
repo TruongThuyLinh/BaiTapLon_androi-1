@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home"
+        android:title="Trang chủ" />
+
+
+    <item
+        android:id="@+id/nav_notifications"
+        android:icon="@drawable/bell"
+        android:title="Thông báo" />
+
+    <item
+        android:id="@+id/nav_wishlist"
+        android:icon="@drawable/like"
+        android:title="Wish list" />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/box"
+            android:title="Danh mục sản phẩm">
+            <menu>
+                <item
+                    android:id="@+id/nav_nokia"
+                    android:title="Nokia" />
+                <item
+                    android:id="@+id/nav_samsung"
+                    android:title="Samsung" />
+                <item
+                    android:id="@+id/nav_oppo"
+                    android:title="Oppo" />
+                <item
+                    android:id="@+id/nav_apple"
+                    android:title="Apple" />
+            </menu>
+        </item>
+    </group>
+
+    <item
+        android:id="@+id/nav_contact"
+        android:icon="@drawable/phone"
+        android:title="Liên hệ" />
+
+</menu>
