@@ -3,9 +3,9 @@ package com.example.baitaplon.drawerLayout.model;
 public class product {
     private String name;
     private String price;
-    private int image;
+    private int imagePath;
     public  product(String name,String price,int image){
-        this.image=image;
+        this.imagePath = image;
         this.name=name;
         this.price=price;
     }
@@ -15,7 +15,7 @@ public class product {
     public  String getPrice(){
         return  price;
     }
-    public int getImage(){
-        return  image;
+    public int getImagePath() {
+        return imagePath;
     }
 }

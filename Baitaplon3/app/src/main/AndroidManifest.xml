@@ -25,6 +25,7 @@
         <activity android:name=".drawerLayout.activity1.chitietsanpham" />
         <activity android:name=".drawerLayout.activity1.giohang" />
         <activity android:name=".drawerLayout.activity1.chitietgiohang" />
+        <activity android:name=".drawerLayout.activity1.giaohang"/>
 
     </application>
 

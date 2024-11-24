@@ -38,6 +38,7 @@
     </RelativeLayout>
     <!-- Form nhập thông tin -->
     <EditText
+        android:id="@+id/editFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Họ và Tên"
@@ -47,6 +48,7 @@
         android:layout_marginTop="16dp" />
 
     <EditText
+        android:id="@+id/edtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Số Điện Thoại"
@@ -122,6 +124,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btngiaohang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GIAO HÀNG"

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.baitaplon.R;
 import com.example.baitaplon.drawerLayout.activity1.chitietgiohang;
 import com.example.baitaplon.drawerLayout.activity1.chitietsanpham;
@@ -52,12 +53,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         // Set giá trị cho từng thuộc tính của product
         holder.productName.setText(product.getName());
         holder.productPrice.setText(product.getPrice());
-        holder.productImage.setImageResource(product.getImage());
+        // Sử dụng Glide để tải ảnh từ đường dẫn
+        Glide.with(context)
+                .load(product.getImagePath()) // Đường dẫn ảnh
+                .into(holder.productImage); // ImageView nơi hiển thị ảnh
 
         // Xử lý sự kiện khi người dùng nhấn vào từng sản phẩm để mở chi tiết sản phẩm
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, chitietsanpham.class);
-            intent.putExtra("productImage", product.getImage());
+            intent.putExtra("productImage", product.getImagePath());
             intent.putExtra("productName", product.getName());
             intent.putExtra("productPrice", product.getPrice());
             context.startActivity(intent);
@@ -80,7 +84,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productName = itemView.findViewById(R.id.productName);
             productPrice = itemView.findViewById(R.id.productPrice);
             productImage = itemView.findViewById(R.id.productImage);
-            themgiohang = itemView.findViewById(R.id.btnAddToCart); // Khai báo Button trong ViewHolder
+
         }
     }
 }

@@ -93,6 +93,15 @@ public class giohang extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+        muahang=findViewById(R.id.btmua);
+        muahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Closes the activity and goes back
+                Intent intent1 = new Intent(giohang.this, giaohang.class);
+                startActivity(intent1);
+            }
+        });
 
     }
     public void updateTotalPrice() {
