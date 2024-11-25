@@ -75,7 +75,6 @@ public class Databaste extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         database.execSQL(sql);
     }
-
     // Truy vấn trả kết quả (SELECT...)
     public Cursor GetData(String sql) {
         SQLiteDatabase database = getReadableDatabase();

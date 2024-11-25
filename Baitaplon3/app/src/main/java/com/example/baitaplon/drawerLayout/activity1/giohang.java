@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -93,14 +94,42 @@ public class giohang extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-        muahang=findViewById(R.id.btmua);
-        muahang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Closes the activity and goes back
-                Intent intent1 = new Intent(giohang.this, giaohang.class);
-                startActivity(intent1);
+        muahang = findViewById(R.id.btmua);
+        muahang.setOnClickListener(view -> {
+            ArrayList<String> selectedProducts = new ArrayList<>();
+            ArrayList<Integer> productImages = new ArrayList<>(); // Thay kiểu thành Integer để lưu hình ảnh (int)
+            int totalPrice = 0; // Biến tổng tiền phải là số nguyên để tính toán chính xác
+
+            // Duyệt qua danh sách giỏ hàng
+            for (giohangmodel item : giohangList) {
+                if (item.isSelected()) { // Kiểm tra nếu checkbox được chọn
+                    selectedProducts.add(item.getName()); // Lưu tên sản phẩm
+                    productImages.add(item.getImage()); // Lưu ảnh (int)
+
+                    // Chuyển đổi giá từ String sang Integer
+                    try {
+                        int pric = Integer.parseInt(item.getPrice().replaceAll("[^\\d]", "")); // Loại bỏ ký tự không phải số
+                        totalPrice += pric * item.getQuantity(); // Nhân giá với số lượng
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        // Nếu chuyển đổi lỗi, bỏ qua sản phẩm này
+                        Toast.makeText(this, "Giá sản phẩm không hợp lệ: " + item.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
+
+            // Kiểm tra nếu không có sản phẩm được chọn
+            if (selectedProducts.isEmpty()) {
+                Toast.makeText(this, "Vui lòng chọn sản phẩm trước khi mua hàng!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Lưu thông tin đã chọn vào Intent để truyền sang Activity tiếp theo
+            Intent intent1 = new Intent(this, giaohang.class);
+            intent1.putStringArrayListExtra("selectedProducts", selectedProducts); // Truyền danh sách sản phẩm
+            intent1.putIntegerArrayListExtra("productImages", productImages); // Truyền danh sách ảnh
+            intent1.putExtra("totalPrice", totalPrice); // Truyền tổng tiền
+            startActivity(intent1);
         });
 
     }

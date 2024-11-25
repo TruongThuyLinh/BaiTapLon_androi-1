@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class trangchu extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     //private NavigationView navigationView;
     Databaste database;
+    Button muahang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,16 @@ public class trangchu extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+        muahang=findViewById(R.id.btmua);
+        muahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Closes the activity and goes back
+                Intent intent1 = new Intent(trangchu.this, giohang.class);
+                startActivity(intent1);
+            }
+        });
+
 
         // Khởi tạo DrawerLayout
         drawerLayout = findViewById(R.id.drawerlayout);
