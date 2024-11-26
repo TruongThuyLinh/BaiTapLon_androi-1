@@ -41,11 +41,11 @@ public class trangchu extends AppCompatActivity {
         // Khởi tạo cơ sở dữ liệu
         database = new Databaste(this, "Danhsach.sqlite", null, 1);
         // Chèn dữ liệu ban đầu vào cơ sở dữ liệu
-        insertProduct("iPhone 16 Pro Max 256 GB", "34.990.000 đ", R.drawable.iphone16);
-        insertProduct("Samsung Galaxy Z Flip4 5G 128GB", "11.990.000 đ", R.drawable.samsungz);
-        insertProduct("Xiaomi Poco M6 Pro 8GB 256GB", "5.990.000 đ", R.drawable.xiaomi);
-        insertProduct("Honor X9B 5G 12GB-256GB", "7.990.000 đ", R.drawable.honor);
-        insertProduct("OPPO A3 6GB 128GB", "4.690.000 đ", R.drawable.oppo);
+//        insertProduct("iPhone 16 Pro Max 256 GB", "34.990.000 đ", R.drawable.iphone16);
+//        insertProduct("Samsung Galaxy Z Flip4 5G 128GB", "11.990.000 đ", R.drawable.samsungz);
+//        insertProduct("Xiaomi Poco M6 Pro 8GB 256GB", "5.990.000 đ", R.drawable.xiaomi);
+//        insertProduct("Honor X9B 5G 12GB-256GB", "7.990.000 đ", R.drawable.honor);
+//        insertProduct("OPPO A3 6GB 128GB", "4.690.000 đ", R.drawable.oppo);
 
         // Lấy danh sách sản phẩm từ cơ sở dữ liệu
         productList = getAllProducts();

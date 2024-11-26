@@ -65,8 +65,14 @@ public class Databaste extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS sanpham");
-        onCreate(db);
+//        db.execSQL("DROP TABLE IF EXISTS sanpham");
+        // Xóa tất cả các bảng hiện tại
+        String[] tables = {"sanpham", "Users", "Categories", "Product", "Cart"};
+        for (String table : tables) {
+            db.execSQL("DROP TABLE IF EXISTS " + table);
+        }
+
+//        onCreate(db);
         // Xử lý khi nâng cấp cơ sở dữ liệu (nếu cần)
     }
 

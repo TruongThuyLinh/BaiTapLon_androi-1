@@ -74,7 +74,6 @@ public class giohang extends AppCompatActivity {
         giohangAdapter = new GiohangAdapter(giohangList, this);
         recyclergiohang.setAdapter(giohangAdapter);
         recyclergiohang.setLayoutManager(new LinearLayoutManager(this));
-
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +83,6 @@ public class giohang extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
         trangchu=findViewById(R.id.imageView8);
         trangchu.setOnClickListener(new View.OnClickListener() {
             @Override

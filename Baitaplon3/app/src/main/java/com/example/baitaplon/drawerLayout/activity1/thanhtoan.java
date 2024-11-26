@@ -22,7 +22,7 @@ import java.util.List;
 
 public class thanhtoan extends AppCompatActivity {
     ImageView trangchu, giohang, thoat;
-    TextView txtFullName, txtPhoneNumber;
+    TextView txtFullName, txtPhoneNumber, tensp, tongtien;
     Button tieptuc;
 
 
@@ -66,25 +66,70 @@ public class thanhtoan extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Closes the activity and goes back
+                // Nhận dữ liệu từ Intent
+
+
+                Intent intent = getIntent();
+                ArrayList<String> selectedProducts = intent.getStringArrayListExtra("selectedProducts");
+                ArrayList<Integer> productImages = intent.getIntegerArrayListExtra("productImages");
+                double totalPrice = intent.getDoubleExtra("totalPrice", 0.0);
+
+                String customerName = intent.getStringExtra("customerName");
+                String customerPhone = intent.getStringExtra("customerPhone");
+                String customerAddress = intent.getStringExtra("customerAddress");
                 Intent intent1 = new Intent(thanhtoan.this, xacnhan.class);
+                // Truyền dữ liệu qua Intent
+                intent1.putStringArrayListExtra("selectedProducts", selectedProducts);
+                intent1.putIntegerArrayListExtra("productImages", productImages);
+                intent1.putExtra("totalPrice", totalPrice);
+                intent1.putExtra("customerName", customerName);
+                intent1.putExtra("customerPhone", customerPhone);
+                intent1.putExtra("customerAddress", customerAddress);
                 startActivity(intent1);
+
             }
 
         });
 
 
-       // Ánh xạ các TextView
-        txtFullName = findViewById(R.id.name);
-        txtPhoneNumber = findViewById(R.id.phone);
-        //lấy dữ liệu từ ShareParereferences
-        SharedPreferences sharedPreferences = getSharedPreferences("giohang_prefs", MODE_PRIVATE);
-        String name = sharedPreferences.getString("name", "Không có thông tin");
-        String phone = sharedPreferences.getString("phone", "Không có thông tin");
-        // Hiển thị thông tin trên UI
-        txtFullName.setText(name);
-        txtPhoneNumber.setText(phone);
+        // Nhận dữ liệu từ Intent
+        Intent intent = getIntent();
+        ArrayList<String> selectedProducts = intent.getStringArrayListExtra("selectedProducts");
+        ArrayList<Integer> productImages = intent.getIntegerArrayListExtra("productImages");
+        double totalPrice = intent.getDoubleExtra("totalPrice", 0.0);
 
-       /* List<giohangmodel> giohangList = (List<giohangmodel>) getIntent().getSerializableExtra("giohangList");
+        String customerName = intent.getStringExtra("customerName");
+        String customerPhone = intent.getStringExtra("customerPhone");
+        String customerAddress = intent.getStringExtra("customerAddress");
+
+        // Hiển thị thông tin khách hàng
+        TextView textCustomerName = findViewById(R.id.name);
+        TextView textCustomerPhone = findViewById(R.id.phone);
+        textCustomerName.setText(customerName);
+        textCustomerPhone.setText(customerPhone);
+
+
+        // Hiển thị tổng giá tiền
+        TextView textTotalPrice = findViewById(R.id.tongtien);
+        textTotalPrice.setText(String.format("Tổng tiền: %.2f VND", totalPrice));
+
+        // Hiển thị sản phẩm
+        LinearLayout productLayout = findViewById(R.id.sp);
+        if (selectedProducts != null && productImages != null && selectedProducts.size() == productImages.size()) {
+            for (int i = 0; i < selectedProducts.size(); i++) {
+                View productView = getLayoutInflater().inflate(R.layout.item_product, null);
+
+                TextView productName = productView.findViewById(R.id.productName);
+                TextView productprice=productView.findViewById(R.id.productPrice);
+                ImageView productImage = productView.findViewById(R.id.productImage);
+
+                productName.setText(selectedProducts.get(i));
+                productprice.setText(selectedProducts.get(i));
+                productImage.setImageResource(productImages.get(i));
+
+                productLayout.addView(productView);
+            }
+       /*List<giohangmodel> giohangList = (List<giohangmodel>) getIntent().getSerializableExtra("giohangList");
         // Hiển thị sản phẩm trong giỏ hàng
         if (giohangList != null && !giohangList.isEmpty()) {
             showProducts(giohangList);
@@ -103,5 +148,9 @@ public class thanhtoan extends AppCompatActivity {
         Intent intent = new Intent(thanhtoan.this, cls);
         startActivity(intent);
     }*/
+        }
     }
 }
+
+
+
